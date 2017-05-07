@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var WebSocket = require("ws");
-var overwrite_1 = require("./FileActions/overwrite");
+var sendAsJson_1 = require("./util/sendAsJson");
 var wss = new WebSocket.Server({ port: 8080 });
 wss.on('connection', function connection(ws) {
-    console.log("connection");
-    ws.on('message', function incoming(message) {
+    var socket = sendAsJson_1.default(ws);
+    console.log(socket);
+    socket.json({ type: 'SOCKET_CONNECTED' });
+    socket.on('message', function incoming(message) {
         console.log(typeof message);
-        overwrite_1.overwrite(overwrite_1.processMessage(JSON.parse(message)));
+        console.log(message);
     });
-    ws.send('something');
 });

@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import reducers from './reducers'
-import socket from './middleware/socket'
+import { socketListener, socketMiddleware } from './middleware/socket'
 
 
-export default createStore(combineReducers(reducers),
-    applyMiddleware(socket))
+export default socketListener(createStore(combineReducers(reducers),
+    applyMiddleware(socketMiddleware)))
 
 

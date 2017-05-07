@@ -3,8 +3,10 @@ import { Provider } from 'react-redux'
 import store from '../store'
 import FileList from './Files'
 
-console.log(store)
-
+window.util = {
+  dispatch: store.dispatch,
+  getState: store.getState
+}
 class App extends React.Component<{}, null> {
   render() {
     return (

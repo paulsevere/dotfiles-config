@@ -1,13 +1,14 @@
 import * as WebSocket from 'ws'
-import { overwrite, processMessage } from './FileActions/overwrite'
+import enhance from './util/sendAsJson'
 
 const wss = new WebSocket.Server({ port: 8080 });
 
 wss.on('connection', function connection(ws: WebSocket) {
-    console.log("connection")
-    ws.on('message', function incoming(message) {
+    const socket = enhance(ws);
+    console.log(socket);
+    socket.json({ type: 'SOCKET_CONNECTED' })
+    socket.on('message', function incoming(message: string) {
         console.log(typeof message);
-        overwrite(processMessage(JSON.parse(message)))
+        console.log(message)
     });
-    ws.send('something');
 });

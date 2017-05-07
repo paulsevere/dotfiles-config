@@ -4,9 +4,10 @@ interface Json {
 }
 interface JsonArray extends Array<string | number | boolean | Date | Json | JsonArray> { }
 
+interface Window { util: any }
 
 interface Command extends Redux.Action {
-    path: string, action: string, data: string | Json | JsonArray
+    meta?: string, payload: { path: string, data: Json }
 }
 
 interface File {

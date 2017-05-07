@@ -4,7 +4,7 @@ interface Message {
     action?: string
 }
 
-function handleMessage(message: any): any {
+function handleMessage(message: Command): Command {
 
     console.log(message)
     return message
