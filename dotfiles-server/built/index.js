@@ -4,6 +4,7 @@ var WebSocket = require("ws");
 var overwrite_1 = require("./FileActions/overwrite");
 var wss = new WebSocket.Server({ port: 8080 });
 wss.on('connection', function connection(ws) {
+    console.log("connection");
     ws.on('message', function incoming(message) {
         console.log(typeof message);
         overwrite_1.overwrite(overwrite_1.processMessage(JSON.parse(message)));

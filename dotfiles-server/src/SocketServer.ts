@@ -4,8 +4,8 @@ interface Message {
     action?: string
 }
 
-function handleMessage(message: Message): Message {
+function handleMessage(message: any): any {
 
-
+    console.log(message)
     return message
 }
